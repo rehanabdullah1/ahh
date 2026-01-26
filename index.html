@@ -1,11 +1,63 @@
 <!DOCTYPE html>
- <html>
- <body>
- <h1>
- Hello
- </h1>
-  <script>
-    while (true) {}
-  </script>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Roboto', sans-serif; padding: 50px; text-align: center; }
+        
+        #confirmation-box {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            background: white;
+            border: 2px solid #000;
+            box-shadow: 10px 10px 0px #000;
+            z-index: 1000;
+        }
+        button { margin: 10px; padding: 10px 20px; cursor: pointer; font-family: 'Roboto', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <h1>Cool Stuff</h1>
+    <button onclick="askUser()">OK</button>
+
+    <div id="confirmation-box">
+        <h3>Donate Please</h3>
+        <p>Please Donate To Me!!!</p>
+        <button onclick="executeCrash()" style="background: #000000; color: white;">Cancel</button>
+        <button onclick="document.location='https://updatefaker.com/windows10/bluescreen.html'">Give Me Money</button>
+    </div>
+
+    <script>
+        const alertBox = document.getElementById('confirmation-box');
+
+        function askUser() {
+            alertBox.style.display = 'block';
+        }
+
+        function closeAlert() {
+            alertBox.style.display = 'none';
+        }
+
+        // 3. The "Command" that crashes the browser
+        function executeCrash() {
+            console.log("Crashing now...");
+            alertBox.style.display = 'none';
+
+            // THE INFINITE LOOP
+            // This tells the computer: "Do nothing, forever, as fast as possible."
+            while (true) {
+                // The browser is now frozen. 
+                // It cannot even update the screen or click 'close'.
+            }
+        }
+    </script>
+
 </body>
 </html>
