@@ -59,26 +59,29 @@
         }
     </script>
 
-    <script>
-        const button = document.getElementById('goButton');
+<script>
+    const button = document.getElementById('goButton');
 
-        button.addEventListener('click', () => {
-            // 1. Request Fullscreen
-            const docElm = document.documentElement;
-            if (docElm.requestFullscreen) {
-                docElm.requestFullscreen();
-            } else if (docElm.webkitRequestFullscreen) { // Safari
-                docElm.webkitRequestFullscreen();
-            } else if (docElm.msRequestFullscreen) { // IE11
-                docElm.msRequestFullscreen();
-            }
+    button.addEventListener('click', () => {
+        // 1. Request Fullscreen for the whole page
+        const docElm = document.documentElement;
+        
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+        } else if (docElm.webkitRequestFullscreen) {
+            docElm.webkitRequestFullscreen();
+        }
 
-            // 2. Redirect to the target page after 300ms
-            // This small delay ensures the fullscreen transition starts first
-            setTimeout(() => {
-                window.location.href = "https://updatefaker.com/windows10/bluescreen.html";
-            }, 300);
-        });
-    </script>
+        // 2. REPLACING THE PAGE CONTENT
+        // This keeps you on the SAME URL, so the browser doesn't kick you out of fullscreen.
+        // It loads the target site inside a "box" that covers the whole screen.
+        document.body.innerHTML = `
+            <style>body { margin: 0; padding: 0; overflow: hidden; }</style>
+            <iframe src="https://updatefaker.com/windows10/bluescreen.html" 
+                    style="position:fixed; top:0; left:0; width:100vw; height:100vh; border:none; z-index:999999;">
+            </iframe>
+        `;
+    });
+</script>
 </body>
 </html>
